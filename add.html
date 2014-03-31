@@ -1,0 +1,16 @@
+
+<h3>Add Project</h3>
+<form>
+<input type="text" ng-model="project.headline" name="headline" placeholder="Headline">
+<input ng-model="project.resturant" name="content" placeholder="Resturant">
+<angular-ratings ng-model="project.rating" notify-url="notify.json" notify-id="id"></angular-ratings>
+
+<input ng-model="project.rating" type="file"  ng-file-select="onFileSelect($files)" name="content"></textarea>
+<br>
+<br>
+<img class="imagePreview" ng-model="project.file" src="uploads/{{project.file}}">
+<br>
+<br>
+<button ng-click="addTodo()">Submit</button>
+</form>
+

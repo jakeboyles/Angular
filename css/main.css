@@ -1,0 +1,48 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+img {
+  max-width: 100%;
+}
+.food {
+  background-color: #f7f7f7;
+  float: left;
+  padding: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-clip: content-box;
+}
+.food .row {
+  padding: 0;
+  margin: 0;
+}
+.food p,
+.food h3,
+.food img {
+  padding: 10px;
+  padding-top: 0;
+}
+.food h2 {
+  font-size: 17px;
+  padding: 0;
+  margin: 0;
+}
+#home {
+  position: relative;
+}
+.angular-ratings {
+  float: left;
+  margin-left: 20px !important;
+}
+.angular-ratings li {
+  background-color: transparent !important;
+  border: none !important;
+}
+.imagePreview {
+  display: none;
+}

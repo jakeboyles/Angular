@@ -1,0 +1,4 @@
+$('#home').masonry({
+  itemSelector: '.item'
+});
+

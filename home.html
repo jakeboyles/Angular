@@ -1,0 +1,16 @@
+        <input type="text" ng-model="search">
+
+        <div masonry ng-controller="mainCtrl" id="home" class="row" >
+
+            <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority | filter:search" class="port">
+            <a href="#/projects/{{project.$id}}"><h2>{{project.headline}}</h2></a>
+            <p>{{project.resturant}}</p>
+            <p>{{project.content}}</p>
+            <img src="uploads/{{project.file}}" alt="picture">
+            <br>
+            <angular-ratings ng-model="project.rating"></angular-ratings>
+            <a href="#/projects/{{project.$id}}/edit">Edit </a>
+            <a href="#" ng-click="deleteProject(project.$id)">Delete</a>
+            </div>
+
+        </div>
