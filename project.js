@@ -41,16 +41,26 @@ $routeProvider
                 }
             })
         },
-        loggedIn:function () {
-            FB.login(function(response) {
-                if (response.authResponse) {
-                    
-                } else {
-                    response = "Fail";
-                }
-                 return "2";
-            })
+        logIn:function () {
+            var status ="";
+            FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
 
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+            status = uid;
+          } else if (response.status === 'not_authorized') {
+            status = "0";
+            FB.login(function(response) {
+            })
+          } else {
+            status = "0";
+            FB.login(function(response) {
+            })
+          }
+        });
+
+        return status;
         }
     }
     })
@@ -84,10 +94,13 @@ $routeProvider
 
 
 function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,Facebook) {
-        $timeout(function(){
-            var test = Facebook.loggedIn();
-            alert(test);
-        },1000);
+        $timeout(function() {
+        console.log(Facebook.logIn());
+        },400)
+
+         $scope.fbLogin = function() {
+             Facebook.logIn();
+         }
 
         $scope.projects = Model.projects();
         $scope.deleteProject = function(id) {
@@ -103,14 +116,13 @@ function projectCtrl($scope,$routeParams, Model,Projects,fbURL, $firebase, $time
          $timeout(function() { 
             $scope.project = Projects[$routeParams.projectid];
             $scope.id = $routeParams.projectid;
-          },300);
+          },200);
     }
 
 
 function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase,Facebook) {
 
         $scope.addTodo = function() {
-
         Facebook.askFacebookForBio(
         function(reason) { // fail
             $scope.error = reason;
@@ -149,7 +161,6 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
             });
         }
         else {
-            alert($scope.error);
             $scope.error=null;
         }
         }
