@@ -37,6 +37,7 @@ img {
 }
 #home {
   position: relative;
+  width: 100%;
 }
 .angular-ratings {
   float: left;
