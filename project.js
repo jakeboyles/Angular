@@ -31,19 +31,29 @@ $routeProvider
 })
 
 .factory('Facebook', function($http) {
-    return new function() {
-        this.askFacebookForBio = function(fail, success) {
+    return {
+        askFacebookForBio:function(fail, success) {
             FB.login(function(response) {
                 if (response.authResponse) {
                     FB.api('/me/', success);
                 } else {
                     fail('User cancelled login or did not fully authorize.');
                 }
-            });
+            })
+        },
+        loggedIn:function () {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    
+                } else {
+                    response = "Fail";
+                }
+                 return "2";
+            })
+
         }
     }
-})
-
+    })
 
 .factory ('Model', function ($firebase,fbURL, Projects) {
             return {
@@ -74,9 +84,10 @@ $routeProvider
 
 
 function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,Facebook) {
-
-
-
+        $timeout(function(){
+            var test = Facebook.loggedIn();
+            alert(test);
+        },1000);
 
         $scope.projects = Model.projects();
         $scope.deleteProject = function(id) {
