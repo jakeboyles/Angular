@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta   charset="utf-8">
+        <meta   http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta   name="description" content="">
+        <meta   name="viewport" content="width=device-width, initial-scale=1">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-                <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link   rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
+        <script src="bower_components/get-style-property/get-style-property.js"></script>
+        <script src="bower_components/get-size/get-size.js"></script>
+        <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+        <script src="bower_components/eventie/eventie.js"></script>
+        <script src="bower_components/doc-ready/doc-ready.js"></script>
+        <script src="bower_components/matches-selector/matches-selector.js"></script>
+        <script src="bower_components/outlayer/item.js"></script>
+        <script src="bower_components/outlayer/outlayer.js"></script>
+        <script src="bower_components/masonry/masonry.js"></script>
+        <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+        <link   rel="stylesheet" href="css/normalize.css">
+        <link   rel="stylesheet" href="css/main.css">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
         <script src="dist/angular-file-upload-shim.min.js"></script> 
         <script type="text/javascript" src="dist/angular-file-upload.js"></script>
@@ -19,17 +28,36 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.2/angular-route.min.js"></script>
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.08/jquery.masonry.min.js"></script>
-        <script src="bower_components/angular-masonry/angular-masonry.js"></script>
-        <script type='text/javascript'
-        src='https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login.js'>
-        </script>
+        <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login.js'></script>
         <script src="js/angular-ratings/angular.ratings.js"></script>
-        <link rel="stylesheet" href="js/angular-ratings/angular.ratings.css"></script>
+        <link   rel="stylesheet" href="js/angular-ratings/angular.ratings.css"></script>
+        <script type="text/javascript"  src="bower_components/angular-masonry/angular-masonry.js"></script>
         <script type="text/javascript" src="project.js"></script>
+
+
+
     </head>
     <body class="container-fluid" ng-app="project">
       
+    <div id="fb-root"></div>
+        
+
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '408089229326944'
+        });
+    };
+
+    // Load the SDK Asynchronously
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+        </script>
         <p>Food Failures</p>
         <a href="#/add"> Add Item</a>
 
