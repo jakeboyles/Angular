@@ -55,13 +55,13 @@
             }(document));
         </script>
 
-        <div ng-controller="mainCtrl" class="row">
+        <header ng-controller="mainCtrl" id="header" class="row">
             <p class="col-md-4"><a href="#">Food Failures</a></p>
             <div class="options col-md-4 col-md-offset-4">
                 <a href="#/add"> Add Item</a>
                 <a href="#" ng-model="loginButton" ng-click="fbLogin()">{{loginButton}}</a>
             </div>
-        </div>
+        </header>
          <div ng-view></div>
     </body>
 </html>

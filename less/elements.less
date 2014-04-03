@@ -98,6 +98,13 @@
 .scale(@ratio:1.5){
   .transform(scale(@ratio));
 }
+
+.clearfix() {
+  zoom: 1;
+  &:before { content: ''; display: block; }
+  &:after { content: ''; display: table; clear: both; }
+}
+
 .transition(@duration:0.2s, @ease:ease-out) {
   -webkit-transition: all @duration @ease;
   -moz-transition: all @duration @ease;
