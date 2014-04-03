@@ -58,8 +58,15 @@
         ref.parentNode.insertBefore(js, ref);
     }(document));
         </script>
-        <p>Food Failures</p>
+
+        <div ng-controller="mainCtrl" class="row">
+        <p class="col-md-4"><a href="#">Food Failures</a></p>
+        <div class="options col-md-4 col-md-offset-4">
         <a href="#/add"> Add Item</a>
+        <a href="#" ng-model="loginButton" ng-click="fbLogin()">{{loginButton}}</a>
+        </div>
+
+        </div>
 
          <div ng-view></div>
 

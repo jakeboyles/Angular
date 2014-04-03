@@ -19,14 +19,13 @@ if (in_array($extension, $allowedExts))
     else
       {
       $original_image = $_FILES['file']['name'];
-       $image = new ImageResize($_FILES["file"]["tmp_name"]);
-       $image->resizeToHeight(800);
-       $image->save($_FILES["file"]["tmp_name"]);
+      $image = new ImageResize($_FILES["file"]["tmp_name"]);
+      $image->resizeToHeight(800);
+      $image->save($_FILES["file"]["tmp_name"]);
 
-       move_uploaded_file($_FILES["file"]["tmp_name"],
+      move_uploaded_file($_FILES["file"]["tmp_name"],
       "uploads/" . $_FILES["file"]["name"]);
       echo $_FILES["file"]["name"];
-
       }
     }
   }

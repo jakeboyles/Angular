@@ -8,32 +8,31 @@ img {
   max-width: 100%;
 }
 .food {
-  background-color: #f7f7f7;
   float: left;
   padding: 5px;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-clip: content-box;
+}
+.food p,
+.food h2 {
+  padding: 0;
+  margin: 0;
+}
+.food h2 {
+  margin-top: 7px;
+  margin-bottom: 3px;
 }
 .food .row {
   padding: 0;
   margin: 0;
 }
-.food p,
-.food h3,
-.food a,
-.food img {
-  padding-left: 10px;
-  padding-top: 10px;
-  margin-top: 0;
-}
-.food h2 {
-  padding-left: 0px;
-  margin-bottom: 0px;
-  font-size: 17px;
-  margin-top: 0;
+.food .content {
+  width: 95%;
+  margin: 0px auto;
+  background-color: #f7f7f7;
+  padding: 10px;
 }
 #home {
   position: relative;
@@ -41,7 +40,6 @@ img {
 }
 .angular-ratings {
   float: left;
-  margin-left: 20px !important;
   width: 100%;
 }
 .angular-ratings li {
