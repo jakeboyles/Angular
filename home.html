@@ -1,21 +1,21 @@
         <input type="text" ng-model="search">
 
-        <a href="#" ng-click="fbLogin()">Login</a>
+        <a href="#" ng-model="loginButton" ng-click="fbLogin()">{{loginButton}}</a>
 
-<H2>{{response}}</H2>
         <div masonry item-selector=".food" ng-controller="mainCtrl" id="home" class="row" >
 
             <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority | filter:search" class="port">
                 <img src="uploads/{{project.file}}" alt="picture">
 
                 <div class="row">
-                <a class="col-md-6" href="#/projects/{{project.$id}}"><h2>{{project.headline}}</h2></a>
-                <p class="col-md-6">{{project.userName}}</p>
-                </div>
-                <p>{{project.resturant}}</p>
-                <angular-ratings ng-model="project.rating"></angular-ratings>
-                <!-- <a href="#/projects/{{project.$id}}/edit">Edit </a>
-                <a href="#" ng-click="deleteProject(project.$id)">Delete</a> -->
+                    <a class="col-md-6" href="#/projects/{{project.$id}}"><h2>{{project.headline}}</h2></a>
+                    <p class="col-md-6">{{project.userName}}</p>
                 </div>
 
+                <p>{{project.resturant}}</p>
+                <angular-ratings ng-model="project.rating"></angular-ratings>
+                <a href="#/projects/{{project.$id}}/edit">Edit </a>
+                <a href="#" ng-click="deleteProject(project.$id)">Delete</a>
+
+            </div>
         </div>

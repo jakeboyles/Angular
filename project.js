@@ -23,12 +23,18 @@ $routeProvider
     .otherwise({
     redirectTo:'/'
     });
-
 })
+
+
+
+
 
 .factory('Projects', function($firebase, fbURL, $timeout, $q) {
         return $firebase(new Firebase(fbURL));
 })
+
+
+
 
 .factory('Facebook', function($http) {
     return {
@@ -45,18 +51,13 @@ $routeProvider
             var status ="";
             FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-
-            var uid = response.authResponse.userID;
-            var accessToken = response.authResponse.accessToken;
-            status = uid;
+                var uid = response.authResponse.userID;
+                var accessToken = response.authResponse.accessToken;
+                status = uid;
           } else if (response.status === 'not_authorized') {
-            status = "0";
-            FB.login(function(response) {
-            })
+                status = "0";
           } else {
-            status = "0";
-            FB.login(function(response) {
-            })
+                status = "0";
           }
         });
 
@@ -94,12 +95,25 @@ $routeProvider
 
 
 function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,Facebook) {
+
         $timeout(function() {
-        console.log(Facebook.logIn());
-        },400)
+            if(Facebook.logIn()!="0"){
+                $scope.loginButton = "Logout";
+
+            }
+            else {
+                $scope.loginButton = "Login"
+            }
+        },500)
 
          $scope.fbLogin = function() {
-             Facebook.logIn();
+            if(Facebook.logIn()!="0"){
+                FB.logout();
+            }
+            else {
+                FB.login();
+                $scope.loginButton = "Logout";
+            }
          }
 
         $scope.projects = Model.projects();
@@ -142,9 +156,11 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
         var file = $files[0];
             if (file.type.indexOf('image') == -1) {
                  $scope.error = 'image extension not allowed, please choose a JPEG or PNG file.' ;
+                 alert($scope.error);
             }
             if (file.size > 2097152){
                  $scope.error ='File size cannot exceed 2 MB';
+                 alert($scope.error);
             }
 
         if(!$scope.error) {
