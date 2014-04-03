@@ -25,16 +25,9 @@ $routeProvider
     });
 })
 
-
-
-
-
 .factory('Projects', function($firebase, fbURL, $timeout, $q) {
         return $firebase(new Firebase(fbURL));
 })
-
-
-
 
 .factory('Facebook', function($http) {
     return {
@@ -55,16 +48,16 @@ $routeProvider
                 var accessToken = response.authResponse.accessToken;
                 status = uid;
           } else if (response.status === 'not_authorized') {
-                status = "0";
+                status = false;
           } else {
-                status = "0";
+                status = false;
           }
         });
-
         return status;
         }
     }
     })
+
 
 .factory ('Model', function ($firebase,fbURL, Projects) {
             return {
@@ -99,7 +92,6 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         $timeout(function() {
             if(Facebook.logIn()!="0"){
                 $scope.loginButton = "Logout";
-
             }
             else {
                 $scope.loginButton = "Login"
@@ -107,7 +99,7 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         },500)
 
          $scope.fbLogin = function() {
-            if(Facebook.logIn()!="0"){
+            if(Facebook.logIn()!=false){
                 FB.logout();
             }
             else {
@@ -152,7 +144,6 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
 
         $scope.onFileSelect = function($files) {
         $(".imagePreview").show();
-
         var file = $files[0];
             if (file.type.indexOf('image') == -1) {
                  $scope.error = 'image extension not allowed, please choose a JPEG or PNG file.' ;

@@ -3,11 +3,13 @@
     <head>
         <meta   charset="utf-8">
         <meta   http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Angular Food App</title>
         <meta   name="description" content="">
         <meta   name="viewport" content="width=device-width, initial-scale=1">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <link   rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link   rel="stylesheet" href="css/normalize.css">
+        <link   rel="stylesheet" href="css/main.css">
         <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
         <script src="bower_components/get-style-property/get-style-property.js"></script>
         <script src="bower_components/get-size/get-size.js"></script>
@@ -19,8 +21,6 @@
         <script src="bower_components/outlayer/outlayer.js"></script>
         <script src="bower_components/masonry/masonry.js"></script>
         <script src="bower_components/imagesloaded/imagesloaded.js"></script>
-        <link   rel="stylesheet" href="css/normalize.css">
-        <link   rel="stylesheet" href="css/main.css">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
         <script src="dist/angular-file-upload-shim.min.js"></script> 
         <script type="text/javascript" src="dist/angular-file-upload.js"></script>
@@ -33,43 +33,35 @@
         <link   rel="stylesheet" href="js/ratings/angular.ratings.css"></script>
         <script type="text/javascript"  src="bower_components/angular-masonry/angular-masonry.js"></script>
         <script type="text/javascript" src="project.js"></script>
-
-
-
+        <script src="js/main.js"></script>
     </head>
+
     <body class="container-fluid" ng-app="project">
-      
-    <div id="fb-root"></div>
-        
+        <div id="fb-root"></div>
+        <script type="text/javascript">
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: '408089229326944'
+                });
+            };
 
-<script type="text/javascript">
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '408089229326944'
-        });
-    };
-
-    // Load the SDK Asynchronously
-    (function(d){
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
+            // Load the SDK Asynchronously
+            (function(d){
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement('script'); js.id = id; js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            }(document));
         </script>
 
         <div ng-controller="mainCtrl" class="row">
-        <p class="col-md-4"><a href="#">Food Failures</a></p>
-        <div class="options col-md-4 col-md-offset-4">
-        <a href="#/add"> Add Item</a>
-        <a href="#" ng-model="loginButton" ng-click="fbLogin()">{{loginButton}}</a>
+            <p class="col-md-4"><a href="#">Food Failures</a></p>
+            <div class="options col-md-4 col-md-offset-4">
+                <a href="#/add"> Add Item</a>
+                <a href="#" ng-model="loginButton" ng-click="fbLogin()">{{loginButton}}</a>
+            </div>
         </div>
-
-        </div>
-
          <div ng-view></div>
-
-        <script src="js/main.js"></script>
     </body>
 </html>
