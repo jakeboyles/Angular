@@ -6,7 +6,7 @@
 <p>How was it?</p>
 <angular-ratings ng-model="project.rating" notify-url="notify.json" notify-id="id"></angular-ratings>
 
-<input ng-model="project.rating" type="file"  ng-file-select="onFileSelect($files)" name="content"></textarea>
+<input ng-model="user_ratings[project.id]" type="file" ng-file-select="onFileSelect($files)" name="content"></textarea>
 <br>
 <br>
 <img class="imagePreview" ng-model="project.file" src="uploads/{{project.file}}">

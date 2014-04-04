@@ -1,12 +1,21 @@
-        <input type="text" placeholder="Search" ng-model="search">
+        <select placeholder="Search" ng-model="search.rating">
+            <option value="">All</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <input type="text" placeholder="Search by Restaurnat" ng-model="search.resturant" />
 
         <div masonry item-selector=".food" ng-controller="mainCtrl" id="home" class="row" >
 
-            <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority | filter:search" class="port">
+            <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority| filter:search " class="port">
                 <div class="content">
                     <img src="uploads/{{project.file}}" alt="picture">
                     <h2>{{project.headline}}</h2>
-                    <p>{{project.userName}}</p>
+                    <!-- <p>{{project.userName}}</p> -->
                     <p>{{project.resturant}}</p>
                     <angular-ratings ng-model="project.rating"></angular-ratings>
                    <!--  <a href="#/projects/{{project.$id}}/edit">Edit </a>
