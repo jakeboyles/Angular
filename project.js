@@ -27,6 +27,9 @@ $routeProvider
     });
 })
 
+
+
+
 .factory('Projects', function($firebase, fbURL, $timeout, $q) {
     return $firebase(new Firebase(fbURL));
 })
@@ -98,7 +101,7 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         else {
             $scope.loginButton = "Login"
         }
-    },500)
+    },300)
 
      $scope.fbLogin = function() {
         if(Facebook.logIn()!=false){

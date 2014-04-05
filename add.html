@@ -1,17 +1,16 @@
 
-<h3>Add Some Food</h3>
-<form>
+<h2>Add Some Food</h2>
+<form class="addition">
 <input type="text" ng-model="project.headline" name="headline" placeholder="What is it?">
-<input ng-model="project.resturant" name="content" placeholder="Location">
+<input ng-model="project.resturant" name="content" placeholder="Resturant">
+<input ng-model="project.zipcode" name="content" placeholder="Zipcode" type='number'>
 <p>How was it?</p>
 <angular-ratings ng-model="project.rating" notify-url="notify.json" notify-id="id"></angular-ratings>
 
 <input ng-model="user_ratings[project.id]" type="file" ng-file-select="onFileSelect($files)" name="content"></textarea>
-<br>
-<br>
+
 <img class="imagePreview" ng-model="project.file" src="uploads/{{project.file}}">
-<br>
-<br>
+
 <button ng-click="addTodo()">Submit</button>
 </form>
 

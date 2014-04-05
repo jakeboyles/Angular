@@ -1,7 +1,39 @@
 @import "elements.less";
 
+* {
+	font-family: 'Roboto', sans-serif;
+}
 img {
     max-width:100%;
+}
+
+header {
+	input,select {
+		padding:5px 10px;
+		margin-top:11px;
+	}
+	padding:0px 10px;
+	background-color:#37393F;
+	padding-top:15px;
+	border-bottom:3px solid darken(#fff,3);
+
+	img {
+		max-width:200px;
+		float:left;
+		margin-bottom:20px;
+	}
+
+	i {
+		font-size:39px;
+		color:#fff;
+		margin-top:7px;
+		float:right;
+		margin-right:15px;
+	}
+
+	i:hover {
+		color:darken(#fff,15);
+	}
 }
 
 .food {
@@ -29,8 +61,9 @@ h2 {
 .food .content {
 	width:96%;
 	margin:0px auto;
-	background-color:darken(#fff,3);
+	background-color:darken(#fff,2);
 	padding:10px;
+	.box-shadow(0px 0px 5px rgba(0,0,0,.2));
 	.clearfix();
 }
 
@@ -38,6 +71,18 @@ h2 {
 #home {
     position:relative;
     width:100%;
+
+}
+
+input,select {
+	padding:5px 10px;
+	margin-right:10px;
+}
+
+.filters {
+	display:inline-block;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 
@@ -58,4 +103,57 @@ h2 {
 
 form img {
 	max-width:200px;
+}
+
+.fbLogin {
+	background-color:#fff;
+	.border-radius(5px);
+	color:#000;
+	padding:8px 15px;
+	margin-top:8px;
+	float:right;
+	margin-right:20px;
+}
+
+.fbLogin:hover {
+	text-decoration:none;
+	background-color:darken(#fff,15);
+	color:#000;
+}
+
+.addition {
+	padding-bottom:40px;
+	.clearfix();
+	input {
+		float:left;
+		clear:left;
+		margin-bottom:20px;
+		min-width:260px;
+	}
+
+	input[type='file'] {
+		padding:0;
+		margin-top:30px;
+	}
+
+	p {
+		float:left;
+		clear:left;
+	}
+
+	div {
+		float:left;
+		clear:left;
+	}
+
+	button {
+		float:left;
+		clear:left;
+		background-color:transparent;
+		border:2px solid #37393F;
+		padding:10px 20px;
+		.border-radius(8px);
+		text-transform: uppercase;
+		font-size:14px;
+	}
 }
