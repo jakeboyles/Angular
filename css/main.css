@@ -178,6 +178,23 @@ form img {
   text-transform: uppercase;
   font-size: 14px;
 }
+#showing {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+#showing p {
+  color: #FFFFFF;
+  font-size: 30px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
 @media all and (max-width: 780px) {
   img {
     max-width: 100% !important;
