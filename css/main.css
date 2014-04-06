@@ -178,3 +178,11 @@ form img {
   text-transform: uppercase;
   font-size: 14px;
 }
+@media all and (max-width: 780px) {
+  img {
+    max-width: 100% !important;
+  }
+  .options {
+    margin-top: -10px;
+  }
+}
