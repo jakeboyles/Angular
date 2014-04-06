@@ -165,8 +165,8 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
                 file: file, 
               })
             .progress(function(evt) {
-                if(evt.loaded!=evt.total) {
-                $("#saving").show();
+                if(evt.loaded<1) {
+                    $("#saving").show();
                 }
                 else {
                    $("#saving").hide(); 
