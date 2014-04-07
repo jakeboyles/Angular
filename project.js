@@ -165,7 +165,7 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
                 file: file, 
               })
             .progress(function(evt) {
-                if(parseInt(100.0 * evt.loaded / evt.total)<100) {
+                if(evt.loaded<1) {
                     $("#saving").show();
                 }
                 else {
