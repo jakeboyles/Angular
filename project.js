@@ -166,10 +166,10 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
               })
             .progress(function(evt) {
                 if(evt.loaded<1) {
-                    $("#saving").show();
+                    $("#showing").show();
                 }
                 else {
-                   $("#saving").hide(); 
+                   $("#showing").hide(); 
                 }
                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
             })
