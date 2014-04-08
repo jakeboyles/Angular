@@ -23,9 +23,11 @@ if (in_array($extension, $allowedExts))
       $image->resizeToHeight(800);
       $image->save($_FILES["file"]["tmp_name"]);
 
+      $temper = rand();
+
       move_uploaded_file($_FILES["file"]["tmp_name"],
-      "uploads/" . $_FILES["file"]["name"]);
-      echo $_FILES["file"]["name"];
+      "uploads/".$temper . $_FILES["file"]["name"]);
+      echo $temper.$_FILES["file"]["name"];
       }
     }
   }
