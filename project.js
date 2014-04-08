@@ -165,13 +165,14 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
                 file: file, 
               })
             .progress(function(evt) {
-                if(evt.loaded<1) {
+                if(parseInt(100.0 * evt.loaded / evt.total)<100) {
                     $("#showing").show();
                 }
                 else {
                    $("#showing").hide(); 
                 }
-                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+                console.log(parseInt(100.0 * evt.loaded / evt.total));
             })
             .success(function(data, status, headers, config) {
                 $("#saving").hide();
