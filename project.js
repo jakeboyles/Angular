@@ -175,7 +175,6 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
                 console.log(parseInt(100.0 * evt.loaded / evt.total));
             })
             .success(function(data, status, headers, config) {
-                $("#saving").hide();
                 $scope.project.file = data;
             });
         }
