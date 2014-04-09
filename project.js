@@ -28,6 +28,22 @@ $routeProvider
 })
 
 
+.factory('maps',function($timeout) {
+return {
+    zip: function (zip) {
+        var city = "";
+        $.zipLookup(                                            
+            zip,                                      
+            function(cityName, stateName, stateShortName){      
+                city = cityName;
+            },
+            function(errMsg){                                  
+                //console.log(errMsg);         
+            });
+        return city;
+    }
+  }
+})
 
 
 .factory('Projects', function($firebase, fbURL, $timeout, $q) {
@@ -92,7 +108,7 @@ $routeProvider
 })
 
 
-function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,Facebook,$rootScope) {
+function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,Facebook,$rootScope, maps) {
 
     $timeout(function() {
         if(Facebook.logIn()!="0"){
@@ -113,6 +129,10 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         }
      }
 
+     $timeout(function(){
+       alert(maps.zip("45056"));
+    },500);
+
     $scope.projects = Model.projects();
     $scope.deleteProject = function(id) {
         var projectUrl = fbURL + id;
@@ -130,7 +150,10 @@ function projectCtrl($scope,$routeParams, Model,Projects,fbURL, $firebase, $time
 }
 
 
-function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase,Facebook) {
+function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase,Facebook,maps) {
+
+
+
 
     $scope.addTodo = function() {
         Facebook.askFacebookForBio(
@@ -140,7 +163,9 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
                     $scope.project.userName = user.name;
                     $scope.$digest() // Manual scope evaluation
                     Projects.$add($scope.project, function() {
-                        $timeout(function() { $location.path('/'); });
+                        $timeout(function() { 
+                            $location.path('/'); 
+                        });
                     });
                 }
     )}
