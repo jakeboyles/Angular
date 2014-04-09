@@ -16,7 +16,7 @@
 
             <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority| filter:search " class="port">
                 <div class="content">
-                    <img src="uploads/{{project.file}}" alt="picture">
+                    <img src="{{project.file}}" alt="picture">
                     <h2>{{project.headline}}</h2>
                     <!-- <p>{{project.userName}}</p> -->
                     <p>{{project.resturant}}</p>

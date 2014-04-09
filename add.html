@@ -9,7 +9,7 @@
 
 <input ng-model="user_ratings[project.id]" type="file" ng-file-select="onFileSelect($files)" name="content"></textarea>
 
-<img class="imagePreview" ng-model="project.file" src="uploads/{{project.file}}">
+<img class="imagePreview" ng-model="project.file" src="{{project.file}}">
 
 <button ng-click="addTodo()">Submit</button>
 
