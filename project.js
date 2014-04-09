@@ -1,5 +1,8 @@
 'use strict';
 
+// Jake Ideas
+// When they click on the pic on the home it flips to a map of where its located... awesome
+
 angular.module('project', ['ratings','ngRoute','firebase','angularFileUpload','wu.masonry'])
 
 .value('fbURL', 'https://amber-fire-7013.firebaseio.com/projects/')
