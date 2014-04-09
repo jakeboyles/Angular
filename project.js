@@ -130,10 +130,6 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         }
      }
 
-     $timeout(function(){
-       $scope.zip = maps.zip("45056");
-
-     },300)
 
     $scope.projects = Model.projects();
     $scope.deleteProject = function(id) {
@@ -158,11 +154,13 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
 
 
     $scope.addTodo = function() {
+
         Facebook.askFacebookForBio(
             function(reason) { // fail
                 $scope.error = reason;
                 }, function(user) { // success
                     $scope.project.userName = user.name;
+                    $scope.project.city = maps.zip($scope.project.zipcode);
                     $scope.$digest() // Manual scope evaluation
                     Projects.$add($scope.project, function() {
                         $timeout(function() { 
@@ -213,7 +211,7 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
     }
 };
 
-function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeout, $firebase) {
+function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeout, $firebase,maps) {
     $timeout(function() { 
         var projectUrl = fbURL + $routeParams.projectid;
         $scope.project = $firebase(new Firebase(projectUrl));
@@ -222,6 +220,8 @@ function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeo
     },200);
 
     $scope.editProjects = function() {
+        $scope.project.city = maps.zip($scope.project.zipcode);
+        alert(maps.zip($scope.project.zipcode));
         $scope.project.$save();
         $location.path('/')
     }  

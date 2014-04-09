@@ -18,12 +18,11 @@
                 <div class="content">
                     <img src="{{project.file}}" alt="picture">
                     <h2>{{project.headline}}</h2>
-                    <p>{{zip}}</p>
                     <p>{{project.resturant}}</p>
-                    <p class="zip">{{project.city}}</p>
                     <angular-ratings ng-model="project.rating"></angular-ratings>
-                  <a href="#/projects/{{project.$id}}/edit">Edit </a>
-                    <a href="#" ng-click="deleteProject(project.$id)">Delete</a> 
+                    <p class="zip">{{project.city}}</p>
+                    <!-- <a href="#/projects/{{project.$id}}/edit">Edit </a>
+                    <a href="#" ng-click="deleteProject(project.$id)">Delete</a>  -->
                 </div>
             </div>
         </div>
