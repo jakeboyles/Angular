@@ -28,21 +28,27 @@ $routeProvider
 })
 
 
-.factory('maps',function($http) {
-    var city;
+.factory('maps',function($http,$timeout,$q) {
 return {
     zip: function (zip) {
-        $.zipLookup(                                            
-            zip,                                      
-            function(cityName, stateName, stateShortName){      
-                city = cityName+","+stateName;
-            },
-            function(errMsg){                                  
-                city="error";      
-            });
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        var city;
+            $.zipLookup(                                            
+                zip,                                      
+                function(cityName, stateName, stateShortName){      
+                    city = cityName+","+stateName;
+                    deferred.resolve(city);
+                },
+                function(errMsg){                                  
+                    city="error";      
+                });
 
-        return city;
-    }
+        return promise
+        .then(function(response) {
+            return response;
+        })
+        }
   }
 })
 
@@ -220,9 +226,11 @@ function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeo
     },200);
 
     $scope.editProjects = function() {
-        $scope.project.city = maps.zip($scope.project.zipcode);
-        alert(maps.zip($scope.project.zipcode));
-        $scope.project.$save();
-        $location.path('/')
+        maps.zip($scope.project.zipcode)
+        .then(function(data){
+            $scope.project.city = data;
+            $scope.project.$save();
+            $location.path('/');
+        })
     }  
 }
