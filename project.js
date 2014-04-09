@@ -28,18 +28,19 @@ $routeProvider
 })
 
 
-.factory('maps',function($timeout) {
+.factory('maps',function($http) {
+    var city;
 return {
     zip: function (zip) {
-        var city = "";
         $.zipLookup(                                            
             zip,                                      
             function(cityName, stateName, stateShortName){      
-                city = cityName;
+                city = cityName+","+stateName;
             },
             function(errMsg){                                  
-                //console.log(errMsg);         
+                city="error";      
             });
+
         return city;
     }
   }
@@ -130,8 +131,9 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
      }
 
      $timeout(function(){
-       alert(maps.zip("45056"));
-    },500);
+       $scope.zip = maps.zip("45056");
+
+     },300)
 
     $scope.projects = Model.projects();
     $scope.deleteProject = function(id) {
