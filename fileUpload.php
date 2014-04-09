@@ -25,12 +25,12 @@ if (in_array($extension, $allowedExts))
 
       $temper = rand();
 
-      $newFile = getcwd()."/uploads/".$temper . urlencode($_FILES["file"]["name"]);
+      $newFile = getcwd()."/uploads/".$temper.urlencode($_FILES["file"]["name"]);
 
       move_uploaded_file($_FILES["file"]["tmp_name"],
       $newFile);
 
-      if (!class_exists('S3')) require_once 'S3.php';
+      if (!class_exists('S3')) require_once 's3.php';
 
       // AWS access info
       if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAIYHS42A3YNAGOG3Q');
