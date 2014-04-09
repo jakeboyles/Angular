@@ -154,11 +154,12 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
             $scope.error = 'image extension not allowed, please choose a JPEG or PNG file.' ;
         }
 
-        if (file.size > 2097152){
+        if (file.size > 3097152){
             $scope.error ='File size cannot exceed 2 MB';
         }
 
         if(!$scope.error) {
+                   console.log("made it");
             $scope.upload = $upload.upload({
                 url: 'fileUpload.php',
                 data: {myObj: $scope.myModelObj},
