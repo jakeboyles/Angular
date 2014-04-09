@@ -25,7 +25,7 @@ if (in_array($extension, $allowedExts))
 
       $temper = rand();
 
-      $newFile = "uploads/".$temper . urlencode($_FILES["file"]["name"]);
+      $newFile = getcwd()."/uploads/".$temper . urlencode($_FILES["file"]["name"]);
 
       move_uploaded_file($_FILES["file"]["tmp_name"],
       $newFile);
@@ -36,7 +36,7 @@ if (in_array($extension, $allowedExts))
       if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAIYHS42A3YNAGOG3Q');
       if (!defined('awsSecretKey')) define('awsSecretKey', '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');
 
-      $uploadFile = dirname(__FILE__)."/".$newFile; // File to upload, we'll use the S3 class since it exists
+      $uploadFile = $newFile; // File to upload, we'll use the S3 class since it exists
       $bucketName = 'ChowPics'; // Temporary bucket
 
       // If you want to use PECL Fileinfo for MIME types:
