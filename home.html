@@ -15,7 +15,7 @@
         <div masonry item-selector=".food" ng-controller="mainCtrl" id="home" class="row" >
 
             <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority| filter:search " class="port">
-                <div class="content">
+                <div class="content front">
                     <img src="{{project.file}}" alt="picture">
                     <h2>{{project.headline}}</h2>
                     <p>{{project.resturant}}</p>
@@ -23,6 +23,9 @@
                     <p class="zip">{{project.city}}</p>
                     <a href="#/projects/{{project.$id}}/edit">Edit </a>
                     <a href="#" ng-click="deleteProject(project.$id)">Delete</a> 
+                </div>
+                <div data-location="{{project.city}}" class="content back">
+                        <div id="map-canvas"/>
                 </div>
             </div>
         </div>
