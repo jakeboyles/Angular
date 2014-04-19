@@ -163,6 +163,22 @@ function projectCtrl($scope,$routeParams, Model,Projects,fbURL, $firebase, $time
 
 function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase,Facebook,maps) {
 
+    var latitude,longitude;
+
+
+var init = function () {
+     if (navigator.geolocation)
+    {
+    console.log(navigator.geolocation.getCurrentPosition(showPosition));
+    }
+  else{x.innerHTML = "Geolocation is not supported by this browser.";}
+
+  function showPosition(position)
+  {
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+    }
+};
 
 
 
@@ -173,6 +189,8 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
                 $scope.error = reason;
                 }, function(user) { // success
                     $scope.project.userName = user.name;
+                    $scope.project.lat = latitude;
+                    $scope.project.long = longitude;
                     $scope.project.city = maps.zip($scope.project.zipcode);
                     $scope.$digest() // Manual scope evaluation
                     Projects.$add($scope.project, function() {
@@ -222,9 +240,29 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
             $scope.error=null;
         }
     }
+
+    init();
 };
 
 function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeout, $firebase,maps) {
+    var latitude,longitude;
+
+
+var init = function () {
+     if (navigator.geolocation)
+    {
+    console.log(navigator.geolocation.getCurrentPosition(showPosition));
+    }
+  else{x.innerHTML = "Geolocation is not supported by this browser.";}
+
+  function showPosition(position)
+  {
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+    }
+};
+
+
     $timeout(function() { 
         var projectUrl = fbURL + $routeParams.projectid;
         $scope.project = $firebase(new Firebase(projectUrl));
@@ -236,8 +274,12 @@ function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeo
         maps.zip($scope.project.zipcode)
         .then(function(data){
             $scope.project.city = data;
+            $scope.project.lat = latitude;
+            $scope.project.long = longitude;
             $scope.project.$save();
             $location.path('/');
         })
-    }  
+    }
+
+    init();  
 }

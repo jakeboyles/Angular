@@ -110,11 +110,6 @@ header i:hover {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
-  height: 400px;
-}
-.food .back iframe {
-  width: 100%;
-  height: 300px;
 }
 #home {
   position: relative;
@@ -235,4 +230,8 @@ form img {
   -webkit-backface-visibility: showing !important;
   -moz-backface-visibility: showing !important;
   backface-visibility: showing !important;
+}
+.map {
+  height: 300px;
+  width: 100%;
 }

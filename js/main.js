@@ -7,22 +7,33 @@ $('#home').masonry({
 
 
  setTimeout(function(){
-
-        $('.food').click(function(event){  
-            $(this).toggleClass('rotate-3d');  
+    $('.food').click(function(event){  
+            $(this).toggleClass('rotate-3d'); 
+            var location = $(this).find(".back").attr("data-location");
+            var title = $(this).find("h2").html();
+            var restaurant = $(this).find(".restaurant").html();
+            var id = $(this).find(".map").attr('id');
+            location = location.split(","); 
             event.preventDefault();  
-            var location = $(this).find('.back').attr('data-location');
-            alert(location);
+            var map = L.mapbox.map(id, 'examples.map-9ijuk24y')
+    		.setView([location[0],location[1]], 16);
 
-
-		function initialize() {
-	        var mapOptions = {
-	          center: new google.maps.LatLng(-34.397, 150.644),
-	          zoom: 8
-	        };
-        	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-      	}
-      	google.maps.event.addDomListener(window, 'load', initialize);
-
-        });    
- },9000);
+		    L.mapbox.featureLayer({
+		    type: 'Feature',
+		    geometry: {
+		        type: 'Point',
+		        // coordinates here are in longitude, latitude order because
+		        // x, y is the standard for GeoJSON and many formats
+		        coordinates: [location[1],location[0]]
+		    },
+		    properties: {
+		        title: title,
+		        description: restaurant,
+		        // one can customize markers by adding simplestyle properties
+		        // http://mapbox.com/developers/simplestyle/
+		        'marker-size': 'medium',
+		        'marker-color': '#37393F'
+		    }
+			}).addTo(map);
+	});    
+},3000);
