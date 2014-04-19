@@ -8,8 +8,10 @@ $('#home').masonry({
 
  setTimeout(function(){
     $('.food').click(function(event){  
+    	    var height = $(this).find(".content").height();
             $(this).toggleClass('rotate-3d'); 
             var location = $(this).find(".back").attr("data-location");
+            $(this).find(".map").css("height",height);
             var title = $(this).find("h2").html();
             var restaurant = $(this).find(".restaurant").html();
             var id = $(this).find(".map").attr('id');
