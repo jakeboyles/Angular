@@ -20,7 +20,7 @@ if (in_array($extension, $allowedExts))
       {
       $original_image = $_FILES['file']['name'];
       $image = new ImageResize($_FILES["file"]["tmp_name"]);
-      $image->resizeToHeight(500);
+      $image->resizeToHeight(400);
       $image->save($_FILES["file"]["tmp_name"]);
 
       $temper = rand();
