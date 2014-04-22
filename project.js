@@ -4,6 +4,7 @@
 //..............................
 
 // When they click on the pic on the home it flips to a map of where its located... awesome
+// Include Yelp Reviews by getting them using the location and the keyword (http://www.yelp.com/developers/documentation/v2/search_api)
 
 
 
@@ -55,9 +56,8 @@ return {
         .then(function(response) {
             return response;
         })
-        }
-  }
-})
+    }
+}})
 
 
 .factory('Projects', function($firebase, fbURL, $timeout, $q) {
@@ -131,7 +131,7 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         else {
             $scope.loginButton = "Login"
         }
-    },300)
+    },200)
 
      $scope.fbLogin = function() {
         if(Facebook.logIn()!=false){
@@ -143,8 +143,8 @@ function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebas
         }
      }
 
-
     $scope.projects = Model.projects();
+
     $scope.deleteProject = function(id) {
         var projectUrl = fbURL + id;
         $scope.project = $firebase(new Firebase(projectUrl));
@@ -165,22 +165,21 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
 
     var latitude,longitude;
 
+    var init = function () {
+        if (navigator.geolocation)
+        {
+           console.log(navigator.geolocation.getCurrentPosition(showPosition));
+        }
+        else{
+           alert("Geolocation is not supported by this browser.");
+        }
 
-var init = function () {
-     if (navigator.geolocation)
-    {
-    console.log(navigator.geolocation.getCurrentPosition(showPosition));
-    }
-  else{x.innerHTML = "Geolocation is not supported by this browser.";}
-
-  function showPosition(position)
-  {
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-    }
-};
-
-
+      function showPosition(position)
+      {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+      }
+    };
 
     $scope.addTodo = function() {
 
@@ -215,7 +214,7 @@ var init = function () {
         }
 
         if(!$scope.error) {
-                   console.log("made it");
+            console.log("made it");
             $scope.upload = $upload.upload({
                 url: 'fileUpload.php',
                 data: {myObj: $scope.myModelObj},
@@ -248,27 +247,29 @@ function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeo
     var latitude,longitude;
 
 
-var init = function () {
-     if (navigator.geolocation)
-    {
-    console.log(navigator.geolocation.getCurrentPosition(showPosition));
-    }
-  else{x.innerHTML = "Geolocation is not supported by this browser.";}
+    var init = function () {
+        if (navigator.geolocation)
+        {
+            console.log(navigator.geolocation.getCurrentPosition(showPosition));
+        }
+        else{
+            alert("Geolocation is not supported by this browser.");
+        }
 
-  function showPosition(position)
-  {
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-    }
-};
+        function showPosition(position)
+        {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+        }
+    };
 
 
     $timeout(function() { 
         var projectUrl = fbURL + $routeParams.projectid;
         $scope.project = $firebase(new Firebase(projectUrl));
         $scope.id = $routeParams.projectId;
-
     },200);
+
 
     $scope.editProjects = function() {
         maps.zip($scope.project.zipcode)

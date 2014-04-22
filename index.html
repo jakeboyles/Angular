@@ -66,14 +66,15 @@
         </script>
 
         <header ng-controller="mainCtrl" id="header" class="row">
-        <div class="col-md-4 col-xs-5">
-        <a href="#"><img src="img/logo.png"></a>
-        </div>
+            <div class="col-md-4 col-xs-5">
+                <a href="#"><img src="img/logo.png"></a>
+            </div>
 
             <div class="options col-md-3 col-xs-7 col-md-offset-5">
                 <a href="#/add"><i class="fa fa-plus-square"></i></a>
                 <a href="#" class="fbLogin" ng-model="loginButton" ng-click="fbLogin()">{{loginButton}}</a>
             </div>
+            
         </header>
          <div ng-view></div>
     </body>

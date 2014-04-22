@@ -12,7 +12,7 @@ if (in_array($extension, $allowedExts))
   else
     {
 
-    if (2==1)
+    if (2==1) // Lol, not sure why I did this.... but I did.
       {
       echo $_FILES["file"]["name"];
       }
