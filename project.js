@@ -272,15 +272,14 @@ function editCtrl($scope, $location, Model, $routeParams, Projects,fbURL, $timeo
 
 
     $scope.editProjects = function() {
+        console.log(latitude+" "+longitude);
         maps.zip($scope.project.zipcode)
-        .then(function(data){
-            $scope.project.city = data;
             $scope.project.lat = latitude;
             $scope.project.long = longitude;
             $scope.project.$save();
             $location.path('/');
-        })
     }
 
-    init();  
+    init();
+
 }
