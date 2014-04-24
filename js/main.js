@@ -3,12 +3,10 @@ $('#home').masonry({
 });
 
  setTimeout(function(){
-    $('.links .right').click(function(event){  
-    	if(!$(this).hasClass("clicked")) {
+    $('.right').click(function(event){ 
+    	$(this).parent().parent().parent().toggleClass('rotate-3d');  
     		$(".yelp").hide();
-    		$(this).addClass("clicked");
     	    var height = $(this).parent().parent().find(".content").height();
-            $(this).parent().parent().parent().toggleClass('rotate-3d'); 
             var location = $(this).parent().parent().parent().find(".back").attr("data-location");
             var points = $(this).parent().parent().parent().find(".back").attr("data-location");
             $(this).find(".map").css("height",height);
@@ -39,27 +37,20 @@ $('#home').masonry({
 		        'marker-color': '#37393F'
 		    }
 			}).addTo(map);
-
-			} else {
-				$(this).removeClass("clicked");
-				$(this).toggleClass('rotate-3d'); 
-
-			}
-
 	});    
 },3000);
 
  setTimeout(function(){
-    $('.links .left').click(function(event){  
-    	    if(!$(this).hasClass("clicked")) {
+    $('.left').click(function(event){  
+    	$(this).parent().parent().parent().toggleClass('rotate-3d');  
+    	    $(this).addClass("clicked");
     		$(".yelp").show();
-    		$(this).addClass("clicked");
     	    var id = $(this).parent().parent().parent().find(".map").attr('id');
     	    $("#"+id).hide();
     	    var restaurant = $(this).parent().parent().parent().find(".restaurant").html();
     	    var points = $(this).parent().parent().parent().find(".back").attr("data-location");
     	    var review = $(this).parent().parent().parent().find(".back").find(".review");
-    	    $(this).parent().parent().parent().toggleClass('rotate-3d'); 
+    	    event.preventDefault();  
 			$.ajax({
 				url: "test.php",
 				data: {location: points, name: restaurant},
@@ -69,11 +60,5 @@ $('#home').masonry({
 				review.html(tags.businesses[0].snippet_text);
 				},
 			});
-			}
-			else {
-				$(this).removeClass("clicked");
-				$(this).toggleClass('rotate-3d'); 
-
-			}
-			});    
+			})   
 },3000);
