@@ -3,18 +3,20 @@ $('#home').masonry({
 });
 
  setTimeout(function(){
-    $('.food').click(function(event){  
+    $('.links .right').click(function(event){  
     	if(!$(this).hasClass("clicked")) {
+    		$(".yelp").hide();
     		$(this).addClass("clicked");
-    	    var height = $(this).find(".content").height();
-            $(this).toggleClass('rotate-3d'); 
-            var location = $(this).find(".back").attr("data-location");
-            var points = $(this).find(".back").attr("data-location");
+    	    var height = $(this).parent().parent().find(".content").height();
+            $(this).parent().parent().parent().toggleClass('rotate-3d'); 
+            var location = $(this).parent().parent().parent().find(".back").attr("data-location");
+            var points = $(this).parent().parent().parent().find(".back").attr("data-location");
             $(this).find(".map").css("height",height);
-            var title = $(this).find("h2").html();
+            var title = $(this).parent().parent().parent().find("h2").html();
             var restaurant = $(this).find(".restaurant").html();
-            var id = $(this).find(".map").attr('id');
-            var review = $(this).find(".back").find(".review");
+            var id = $(this).parent().parent().parent().find(".map").attr('id');
+            $("#"+id).show();
+            var review = $(this).parent().parent().parent().find(".back").find(".review");
             location = location.split(","); 
             event.preventDefault();  
             var map = L.mapbox.map(id, 'examples.map-9ijuk24y')
@@ -38,25 +40,40 @@ $('#home').masonry({
 		    }
 			}).addTo(map);
 
-
-			$.ajax({
-			url: "test.php",
-			data: {location: points, name: restaurant},
-			success: function(data){
-			var too =  data;
-			var tags = $.parseJSON(data);
-			review.html(tags.businesses[0].snippet_text);
-			},
-			});
-
 			} else {
-				            $(this).toggleClass('rotate-3d'); 
+				$(this).removeClass("clicked");
+				$(this).toggleClass('rotate-3d'); 
 
 			}
 
-		
-
-
-
 	});    
+},3000);
+
+ setTimeout(function(){
+    $('.links .left').click(function(event){  
+    	    if(!$(this).hasClass("clicked")) {
+    		$(".yelp").show();
+    		$(this).addClass("clicked");
+    	    var id = $(this).parent().parent().parent().find(".map").attr('id');
+    	    $("#"+id).hide();
+    	    var restaurant = $(this).parent().parent().parent().find(".restaurant").html();
+    	    var points = $(this).parent().parent().parent().find(".back").attr("data-location");
+    	    var review = $(this).parent().parent().parent().find(".back").find(".review");
+    	    $(this).parent().parent().parent().toggleClass('rotate-3d'); 
+			$.ajax({
+				url: "test.php",
+				data: {location: points, name: restaurant},
+				success: function(data){
+				var too =  data;
+				var tags = $.parseJSON(data);
+				review.html(tags.businesses[0].snippet_text);
+				},
+			});
+			}
+			else {
+				$(this).removeClass("clicked");
+				$(this).toggleClass('rotate-3d'); 
+
+			}
+			});    
 },3000);
