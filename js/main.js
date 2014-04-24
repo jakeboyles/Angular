@@ -43,7 +43,6 @@ $('#home').masonry({
  setTimeout(function(){
     $('.left').click(function(event){  
     	$(this).parent().parent().parent().toggleClass('rotate-3d');  
-    	    $(this).addClass("clicked");
     		$(".yelp").show();
     	    var id = $(this).parent().parent().parent().find(".map").attr('id');
     	    $("#"+id).hide();
