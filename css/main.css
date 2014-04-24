@@ -87,8 +87,8 @@ header i:hover {
   -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   *zoom: 1;
-  height: 350px;
-  overflow: hidden;
+  height: 360px;
+  position: absolute;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
