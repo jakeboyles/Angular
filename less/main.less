@@ -78,6 +78,16 @@ h2 {
     backface-visibility: hidden;  
 }
 
+.angular-ratings li {
+	width:18px !important;
+	height:18px !important;
+	background-position:0px 0px !important;
+}
+
+.angular-ratings li.active {
+    background-position: 0 -17px !important;
+}
+
 .food .front {
 	z-index:2;
 }
@@ -108,6 +118,9 @@ input,select {
 	display:inline-block;
 	margin-top:10px;
 	margin-bottom:10px;
+	select, input {
+		margin-bottom:10px;
+	}
 }
 
 
@@ -224,7 +237,7 @@ form img {
 
 
 .map {
-	height:300px;
+	min-height:200px;
 	width:100%;
 }
 

@@ -100,6 +100,14 @@ header i:hover {
 .food .content:after {
   clear: both;
 }
+.angular-ratings li {
+  width: 18px !important;
+  height: 18px !important;
+  background-position: 0px 0px !important;
+}
+.angular-ratings li.active {
+  background-position: 0 -17px !important;
+}
 .food .front {
   z-index: 2;
 }
@@ -133,6 +141,10 @@ select {
 .filters {
   display: inline-block;
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+.filters select,
+.filters input {
   margin-bottom: 10px;
 }
 .angular-ratings {
@@ -242,7 +254,7 @@ form img {
   backface-visibility: showing !important;
 }
 .map {
-  height: 300px;
+  min-height: 200px;
   width: 100%;
 }
 .links i {
