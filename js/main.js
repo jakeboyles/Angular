@@ -49,7 +49,6 @@ $('#home').masonry({
     	    var restaurant = $(this).parent().parent().parent().find(".restaurant").html();
     	    var points = $(this).parent().parent().parent().find(".back").attr("data-location");
     	    var review = $(this).parent().parent().parent().find(".back").find(".review");
-    	    event.preventDefault();  
 			$.ajax({
 				url: "test.php",
 				data: {location: points, name: restaurant},
@@ -59,5 +58,6 @@ $('#home').masonry({
 				review.html(tags.businesses[0].snippet_text);
 				},
 			});
+			event.preventDefault();  
 			})   
 },3000);
