@@ -14,7 +14,7 @@
 
         <div masonry item-selector=".food" ng-controller="mainCtrl" id="home" class="row" >
 
-            <div class="masonry-brick col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority| filter:search" >
+            <div class="masonry-brick col-md-2 col-sm-6 col-xs-12 food" ng-repeat="project in projects  | orderByPriority| filter:search" >
                 <div class="content front" >
                     <img src="{{project.file}}" alt="picture">
                     <h2>{{project.headline}}</h2>
