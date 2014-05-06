@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="HomePageModule" >
+<head>
+    <title>Facebook test</title>
+    <script src="http://code.angularjs.org/1.0.0rc2/angular-1.0.0rc2.min.js"></script>
+    <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script src="fb.js"></script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '408089229326944'
+        });
+    };
+
+    // Load the SDK Asynchronously
+    (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+        </script>
+        <div ng-controller="ConnectCtrl">
+            <h1>Hello,</h1> <img width='150' src='{{photos.data.url}}'>, I see that you live in {{bio}} and work at {{bio.work[1].employer.name}}</h1>
+
+            <p>{{bio}}</p>
+
+            <div ng-repeat="da in feed.data">
+
+            <p>{{da.story}}</p>
+
+            <img src="{{da.picture}}">
+
+            </div>
+            <button ng-click="registerWithFacebook()">Find myself on facebook</button>
+        </div>
+    </body>
+</html>

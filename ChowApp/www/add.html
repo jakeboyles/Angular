@@ -1,0 +1,20 @@
+
+<h2>Add Some Food</h2>
+<form class="addition">
+<input type="text" ng-model="project.headline" name="headline" placeholder="What is it?">
+<input ng-model="project.resturant" name="content" placeholder="Resturant">
+<input ng-model="project.zipcode" name="content" placeholder="Zipcode" type='number'>
+<p>How was it?</p>
+<angular-ratings ng-model="project.rating" notify-url="notify.json" notify-id="id"></angular-ratings>
+
+<input ng-model="user_ratings[project.id]" type="file" ng-file-select="onFileSelect($files)" name="content"></textarea>
+
+<img class="imagePreview" ng-model="project.file" src="{{project.file}}">
+
+<button ng-click="addTodo()">Submit</button>
+
+<div id="showing">
+	<p>Uploading... {{progress}}</p>
+</div>
+</form>
+
