@@ -216,7 +216,7 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
         if(!$scope.error) {
             console.log("made it");
             $scope.upload = $upload.upload({
-                url: 'http://www.jibclients.com/ChowPics/fileUpload.php',
+                url: 'fileUpload.php',
                 data: {myObj: $scope.myModelObj},
                 file: file, 
               })
