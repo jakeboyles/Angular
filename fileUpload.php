@@ -1,7 +1,6 @@
 <?php
 include "image-resize.php";
 $allowedExts = array("gif", "jpeg", "jpg", "png");
-
 $temp = explode(".", $_FILES["file"]["name"]);
 $extension = end($temp);
 if (in_array($extension, $allowedExts))
@@ -25,22 +24,6 @@ if (in_array($extension, $allowedExts))
       $image->save($_FILES["file"]["tmp_name"]);
 
       $temper = rand();
-
-      $image = imagecreatefromstring(file_get_contents($_FILES['image_upload']['tmp_name']));
-        $exif = exif_read_data($_FILES['image_upload']['tmp_name']);
-        if(!empty($exif['Orientation'])) {
-            switch($exif['Orientation']) {
-                case 8:
-                    $_FILES["file"]["name"] = imagerotate($image,90,0);
-                    break;
-                case 3:
-                    $_FILES["file"]["name"] = imagerotate($image,180,0);
-                    break;
-                case 6:
-                    $_FILES["file"]["name"] = imagerotate($image,-90,0);
-                    break;
-            }
-        }
 
       $newFile = getcwd()."/uploads/".$temper.urlencode($_FILES["file"]["name"]);
 

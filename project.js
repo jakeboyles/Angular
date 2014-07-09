@@ -64,35 +64,6 @@ return {
     return $firebase(new Firebase(fbURL));
 })
 
-.factory('Facebook', function($http) {
-    return {
-        askFacebookForBio:function(fail, success) {
-            FB.login(function(response) {
-                if (response.authResponse) {
-                    FB.api('/me/', success);
-                } else {
-                    fail('User cancelled login or did not fully authorize.');
-                }
-            })
-        },
-        logIn:function () {
-            var status ="";
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    var uid = response.authResponse.userID;
-                    var accessToken = response.authResponse.accessToken;
-                    status = uid;
-              } else if (response.status === 'not_authorized') {
-                    status = false;
-              } else {
-                    status = false;
-              }
-            });
-            return status;
-        }
-    }
-})
-
 
 .factory ('Model', function ($firebase,fbURL, Projects) {
     return {
@@ -122,26 +93,9 @@ return {
 })
 
 
-function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,Facebook,$rootScope, maps) {
+function mainCtrl($scope,$location,$routeParams, Model, Projects,fbURL, $firebase, $timeout,$rootScope, maps) {
 
-    $timeout(function() {
-        if(Facebook.logIn()!="0"){
-            $scope.loginButton = "Logout";
-        }
-        else {
-            $scope.loginButton = "Login"
-        }
-    },200)
 
-     $scope.fbLogin = function() {
-        if(Facebook.logIn()!=false){
-            FB.logout();
-        }
-        else {
-            FB.login();
-            $scope.loginButton = "Logout";
-        }
-     }
 
     $scope.projects = Model.projects();
 
@@ -161,7 +115,7 @@ function projectCtrl($scope,$routeParams, Model,Projects,fbURL, $firebase, $time
 }
 
 
-function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase,Facebook,maps) {
+function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase,maps) {
 
     var latitude,longitude;
 
@@ -183,22 +137,17 @@ function addCtrl($scope, $upload, $location, Model, Projects, $timeout,$firebase
 
     $scope.addTodo = function() {
 
-        Facebook.askFacebookForBio(
-            function(reason) { // fail
-                $scope.error = reason;
-                }, function(user) { // success
-                    $scope.project.userName = user.name;
-                    $scope.project.lat = latitude;
-                    $scope.project.long = longitude;
-                    $scope.project.city = maps.zip($scope.project.zipcode);
-                    $scope.$digest() // Manual scope evaluation
-                    Projects.$add($scope.project, function() {
-                        $timeout(function() { 
-                            $location.path('/'); 
-                        });
-                    });
-                }
-    )}
+        $scope.project.userName = user.name;
+        $scope.project.lat = latitude;
+        $scope.project.long = longitude;
+        $scope.project.city = maps.zip($scope.project.zipcode);
+        $scope.$digest() // Manual scope evaluation
+        Projects.$add($scope.project, function() {
+            $timeout(function() { 
+                $location.path('/'); 
+            });
+        });
+    }
 
     $scope.onFileSelect = function($files) {
         $(".imagePreview").show();

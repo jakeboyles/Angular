@@ -14,30 +14,19 @@
 
         <div masonry item-selector=".food" ng-controller="mainCtrl" id="home" class="row" >
 
-            <div class="masonry-brick col-md-2 col-sm-6 col-xs-12 food" ng-repeat="project in projects  | orderByPriority| filter:search" >
-                <div class="content front" >
+            <div class="col-md-2 col-xs-6 food" ng-repeat="project in projects  | orderByPriority| filter:search " class="port">
+                <div class="content front masonry-brick">
                     <img src="{{project.file}}" alt="picture">
                     <h2>{{project.headline}}</h2>
                     <p class="restaurant">{{project.resturant}}</p>
                     <angular-ratings ng-model="project.rating"></angular-ratings>
                     <p class="zip">{{project.city}}</p>
-                    <div class="links">
-                        <a class="left" href="#"><i class="fa-cutlery fa"></i></a>
-                        <a class="right" href="#"><i class="fa fa-map-marker"></i></a>
-                    </div>
-                   <!--  <a href="#/projects/{{project.$id}}/edit">Edit </a>
+                    <!-- <a href="#/projects/{{project.$id}}/edit">Edit </a>
                     <a href="#" ng-click="deleteProject(project.$id)">Delete</a>    -->
                 </div>
                 <div data-id="" data-location="{{project.lat}},{{project.long}}" class="content back">
-                        <div class="map" id="map-{{project.$id}}"></div>
-                        <div class="yelp">
                         <h2>Yelp Review</h2>
                         <div class="review">No Review Found</div>
-                        </div>
-                         <div class="links">
-                        <a class="left" href="#"><i class="fa-cutlery fa"></i></a>
-                        <a class="right" href="#"><i class="fa fa-map-marker"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
