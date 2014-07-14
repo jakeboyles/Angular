@@ -3,6 +3,8 @@ Angular
 
 Angular Food Project built by @JakeBoyles .
 
+
+Code base has became super messy. Needs to be cleaned up.
 ## Currently Using:
 
 +   Angular
